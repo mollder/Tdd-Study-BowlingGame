@@ -4,16 +4,29 @@ import spock.lang.Specification
 
 class FrameTest extends Specification {
 
-    def "볼링핀 5개를 쓰러뜨리면 점수 5점이 반환되어야 한다"() {
+    def "첫 프레임 기회에서 볼링핀 4개를 쓰러뜨리면 점수 4점이 반환된다"() {
         given:
-        def fallenPin = 5
+        def fallenPin = 4
         def frame = new Frame()
 
         when:
         def result = frame.pitch(fallenPin)
 
         then:
-        result == 5
+        result == 4
+    }
+
+    def "첫 프레임 기회에서 볼링핀 4개를 쓰러뜨리면 남은핀의 개수는 6개, 기회는 1이다"() {
+        given:
+        def fallenPin = 4
+        def frame = new Frame()
+
+        when:
+        frame.pitch(fallenPin)
+
+        then:
+        frame.ballNumber == 6
+        frame.chance == 1
     }
 
     def "남은 볼링핀 개수보다 높은 숫자가 입력으로 들어오면 에러"() {

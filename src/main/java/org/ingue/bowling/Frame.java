@@ -1,24 +1,40 @@
 package org.ingue.bowling;
 
+import lombok.Getter;
+
+@Getter
 public class Frame {
 
     private int ballNumber;
-    private int change;
+    private int chance;
     private int[] score;
 
     public Frame() {
-        ballNumber = 10;
-        change = 2;
-        score = new int[3];
+        this.ballNumber = 10;
+        this.chance = 2;
+        this.score = new int[2];
     }
 
     public Frame(int ballNumber) {
         this.ballNumber = ballNumber;
-        change = 2;
-        score = new int[3];
+        this.chance = 2;
     }
 
-    public int pitch(int fallenPin) {
+    public int pitch(int fallenPinNumber) {
+        checkFallenPinNumber(fallenPinNumber);
+
+        ballNumber -= fallenPinNumber;
+        score[2-chance] = fallenPinNumber;
+        chance--;
+
+        return fallenPinNumber;
+    }
+
+    public void setChance(int chance) {
+        this.chance = chance;
+    }
+
+    private void checkFallenPinNumber(int fallenPin) {
         if(notHaveChance()) {
             throw new NotHaveChanceException("no more chance");
         }
@@ -26,16 +42,10 @@ public class Frame {
         if(isWrongNumber(fallenPin)) {
             throw new IllegalArgumentException("Incorrect number of fallen pin");
         }
-
-        return fallenPin;
-    }
-
-    public void setChance(int chance) {
-        this.change = chance;
     }
 
     private boolean notHaveChance() {
-        return change <= 0;
+        return chance <= 0;
     }
 
     private boolean isWrongNumber(int fallenPin) {
