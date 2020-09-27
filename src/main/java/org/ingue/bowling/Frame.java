@@ -2,17 +2,20 @@ package org.ingue.bowling;
 
 import lombok.Getter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 public class Frame {
 
     private int ballNumber;
     private int chance;
-    private int[] score;
+    private List<Integer> score;
 
     public Frame() {
         this.ballNumber = 10;
         this.chance = 2;
-        this.score = new int[2];
+        this.score = new ArrayList<>();
     }
 
     public Frame(int ballNumber) {
@@ -24,7 +27,7 @@ public class Frame {
         checkFallenPinNumber(fallenPinNumber);
 
         ballNumber -= fallenPinNumber;
-        score[2-chance] = fallenPinNumber;
+        score.add(fallenPinNumber);
         chance--;
 
         return fallenPinNumber;

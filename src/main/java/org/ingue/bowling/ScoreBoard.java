@@ -2,6 +2,8 @@ package org.ingue.bowling;
 
 import lombok.Getter;
 
+import java.util.List;
+
 @Getter
 public class ScoreBoard {
 
@@ -12,10 +14,11 @@ public class ScoreBoard {
     }
 
     public void save(int round, Frame frame) {
-        int[] score = frame.getScore();
+        List<Integer> score = frame.getScore();
 
-        scoreBoard[round-1][0] = score[0];
-        scoreBoard[round-1][1] = score[1];
+        for(int i = 0; i < score.size(); i++) {
+            scoreBoard[round-1][i] = score.get(i);
+        }
     }
 
     public int[] getRoundScore(int round) {
