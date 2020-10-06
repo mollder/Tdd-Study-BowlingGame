@@ -65,4 +65,16 @@ class FrameTest extends Specification {
         then:
         thrown(NotHaveChanceException.class)
     }
+
+    def "두번의 기회를 거쳐서 10개의 핀을 쓰려뜨리면 해당 프레임은 스페어"() {
+        given:
+        def frame = new Frame()
+
+        when:
+        frame.pitch(5)
+        frame.pitch(5)
+
+        then:
+        frame.isSpare
+    }
 }

@@ -2,7 +2,7 @@ package org.ingue.bowling
 
 import spock.lang.Specification
 
-class ScoreBoardTest extends Specification {
+class BoardTest extends Specification {
 
     def "차수와 전광판을 받아서 성공적으로 저장해야 한다."() {
         given:
@@ -10,12 +10,12 @@ class ScoreBoardTest extends Specification {
         frame.pitch(4)
         frame.pitch(5)
 
-        def scoreBoard = new ScoreBoard()
+        def board = new Board()
         def round = 1
 
         when:
-        scoreBoard.save(round, frame)
-        def result = scoreBoard.getRoundScore(round)
+        board.save(round, frame)
+        def result = board.getRoundScore(round)
 
         then:
         result[0] == 4

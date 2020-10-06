@@ -5,24 +5,24 @@ import lombok.Getter;
 import java.util.List;
 
 @Getter
-public class ScoreBoard {
+public class Board {
 
-    private int[][] scoreBoard;
+    private int[][] board;
 
-    public ScoreBoard() {
-        this.scoreBoard = new int[10][3];
+    public Board() {
+        this.board = new int[10][3];
     }
 
     public void save(int round, Frame frame) {
         List<Integer> score = frame.getScore();
 
         for(int i = 0; i < score.size(); i++) {
-            scoreBoard[round-1][i] = score.get(i);
+            board[round-1][i] = score.get(i);
         }
     }
 
     public int[] getRoundScore(int round) {
-        return scoreBoard[round-1];
+        return board[round-1];
     }
 
 }
