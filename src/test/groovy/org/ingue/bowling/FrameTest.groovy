@@ -75,8 +75,7 @@ class FrameTest extends Specification {
         frame.pitch(5)
 
         then:
-        frame.getScore().isSpare()
-        !frame.getScore().isStreak()
+        frame.getScore().scoreType == ScoreType.SPARE
     }
 
     def "한번만에 10개의 핀을 쓰러뜨리면 해당 프레임은 스트라이크"() {
@@ -87,7 +86,6 @@ class FrameTest extends Specification {
         frame.pitch(10)
 
         then:
-        frame.getScore().isStreak()
-        !frame.getScore().isSpare()
+        frame.getScore().scoreType == ScoreType.STREAK
     }
 }

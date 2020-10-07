@@ -8,13 +8,11 @@ import java.util.List;
 @Getter
 public class Score {
 
-    private boolean isSpare;
-    private boolean isStreak;
+    private ScoreType scoreType;
     private List<Integer> pointList;
 
     public Score() {
-        this.isSpare = false;
-        this.isStreak = false;
+        this.scoreType = ScoreType.NORMAL;
         this.pointList = new ArrayList<>();
     }
 
@@ -22,11 +20,22 @@ public class Score {
         pointList.add(fallenPinNumber);
     }
 
-    public void setSpare(boolean isSpare) {
-        this.isSpare = isSpare;
+    public void setScoreType(int chance, int ballNumber) {
+        if (hitSpare(chance, ballNumber)) {
+            this.scoreType = ScoreType.SPARE;
+        }
+
+        if (hitStreak(chance, ballNumber)) {
+            this.scoreType = ScoreType.STREAK;
+        }
     }
 
-    public void setStreak(boolean isStreak) {
-        this.isStreak = isStreak;
+    private boolean hitStreak(int chance, int ballNumber) {
+        return chance == 1 && ballNumber == 0;
     }
+
+    private boolean hitSpare(int chance, int ballNumber) {
+        return chance == 0 && ballNumber == 0;
+    }
+
 }

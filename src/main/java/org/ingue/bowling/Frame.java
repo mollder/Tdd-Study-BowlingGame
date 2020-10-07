@@ -28,27 +28,13 @@ public class Frame {
         score.add(fallenPinNumber);
         chance--;
 
-        if (hitSpare()) {
-            score.setSpare(true);
-        }
-
-        if (hitStreak()) {
-            score.setStreak(true);
-        }
+        score.setScoreType(chance, ballNumber);
 
         return fallenPinNumber;
     }
 
     public void setChance(int chance) {
         this.chance = chance;
-    }
-
-    private boolean hitStreak() {
-        return chance == 1 && ballNumber == 0;
-    }
-
-    private boolean hitSpare() {
-        return chance == 0 && ballNumber == 0;
     }
 
     private void checkStatus(int fallenPin) {
