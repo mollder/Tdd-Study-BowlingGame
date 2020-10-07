@@ -15,10 +15,12 @@ class BoardTest extends Specification {
 
         when:
         board.save(round, frame)
-        def result = board.getRoundScore(round)
+
+        def score = board.getRoundScore(round)
+        def pointList = score.getPointList()
 
         then:
-        result[0] == 4
-        result[1] == 5
+        pointList.get(0) == 4
+        pointList.get(1) == 5
     }
 }

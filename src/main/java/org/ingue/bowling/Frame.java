@@ -2,28 +2,23 @@ package org.ingue.bowling;
 
 import lombok.Getter;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Getter
 public class Frame {
 
     private int ballNumber;
     private int chance;
-    boolean isSpare;
-    private List<Integer> score;
+    private Score score;
 
     public Frame() {
         this.ballNumber = 10;
         this.chance = 2;
-        this.isSpare = false;
-        this.score = new ArrayList<>();
+        score = new Score();
     }
 
     public Frame(int ballNumber) {
         this.ballNumber = ballNumber;
         this.chance = 2;
-        this.isSpare = false;
+        score = new Score();
     }
 
     public int pitch(int fallenPinNumber) {
@@ -33,27 +28,35 @@ public class Frame {
         score.add(fallenPinNumber);
         chance--;
 
-        if(hitSpare()) {
-            isSpare = true;
+        if (hitSpare()) {
+            score.setSpare(true);
+        }
+
+        if (hitStreak()) {
+            score.setStreak(true);
         }
 
         return fallenPinNumber;
-    }
-
-    private boolean hitSpare() {
-        return chance == 0 && ballNumber == 0;
     }
 
     public void setChance(int chance) {
         this.chance = chance;
     }
 
+    private boolean hitStreak() {
+        return chance == 1 && ballNumber == 0;
+    }
+
+    private boolean hitSpare() {
+        return chance == 0 && ballNumber == 0;
+    }
+
     private void checkStatus(int fallenPin) {
-        if(notHaveChance()) {
+        if (notHaveChance()) {
             throw new NotHaveChanceException("no more chance");
         }
 
-        if(isWrongNumber(fallenPin)) {
+        if (isWrongNumber(fallenPin)) {
             throw new IllegalArgumentException("Incorrect number of fallen pin");
         }
     }
