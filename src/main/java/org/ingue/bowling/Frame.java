@@ -21,7 +21,7 @@ public class Frame {
         score = new Score();
     }
 
-    public int pitch(int fallenPinNumber) {
+    public void pitch(int fallenPinNumber) {
         checkStatus(fallenPinNumber);
 
         ballNumber -= fallenPinNumber;
@@ -29,8 +29,6 @@ public class Frame {
 
         score.add(fallenPinNumber);
         score.setScoreType(chance, ballNumber);
-
-        return fallenPinNumber;
     }
 
     public void setChance(int chance) {
@@ -53,5 +51,9 @@ public class Frame {
 
     private boolean isWrongNumber(int fallenPin) {
         return fallenPin < 0 || fallenPin > ballNumber;
+    }
+
+    public boolean isEnd() {
+        return chance == 0 || ballNumber == 0;
     }
 }
