@@ -79,7 +79,7 @@ public class Board {
             return 0;
         }
 
-        if(!isStreak(round+1)) {
+        if (!isStreak(round + 1)) {
             Integer firstBonus = board[round + 1].getPointList().get(0);
             Integer secondBonus = board[round + 1].getPointList().get(1);
 
@@ -89,7 +89,7 @@ public class Board {
         Integer firstBonus = 10;
         Integer secondBonus = 0;
 
-        if(isBonusExist(round+1)) {
+        if (isBonusExist(round + 1)) {
             secondBonus = board[round + 2].getPointList().get(0);
         }
 

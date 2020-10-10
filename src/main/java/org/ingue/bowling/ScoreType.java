@@ -2,7 +2,6 @@ package org.ingue.bowling;
 
 import lombok.Getter;
 
-import javax.crypto.NullCipher;
 import java.util.Arrays;
 
 @Getter
@@ -31,7 +30,7 @@ public enum ScoreType {
         return Arrays.stream(ScoreType.values())
                 .filter(scoreType -> scoreType.equals(input))
                 .findAny()
-                .orElseThrow(() -> new IllegalArgumentException("입력된 ScoreType이 잘못되었습니다. 입력된 ScoreType : "+input))
+                .orElseThrow(() -> new IllegalArgumentException("입력된 ScoreType이 잘못되었습니다. 입력된 ScoreType : " + input))
                 .getMessage();
     }
 }

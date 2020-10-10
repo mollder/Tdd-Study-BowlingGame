@@ -12,7 +12,7 @@ public class GameRunner {
 
         printStartMessage();
 
-        for(int round = 1; round <= 10; round++) {
+        for (int round = 1; round <= 10; round++) {
             Frame frame = new Frame();
 
             playRound(round, frame);
@@ -30,7 +30,7 @@ public class GameRunner {
     }
 
     private void printTotalPoint(Board resultBoard) {
-        System.out.println("총 점수 : "+resultBoard.getTotalPoint());
+        System.out.println("총 점수 : " + resultBoard.getTotalPoint());
     }
 
     private void printStartMessage() {
@@ -40,8 +40,8 @@ public class GameRunner {
     private void playRound(int round, Frame frame) {
         int chance = 1;
 
-        while(!frame.isEnd()) {
-            System.out.println("라운드 "+ round +"의 "+chance+"번째 공을 던지세요 !");
+        while (!frame.isEnd()) {
+            System.out.println("라운드 " + round + "의 " + chance + "번째 공을 던지세요 !");
 
             int fallenPinNum = InputUtils.nextInt();
 

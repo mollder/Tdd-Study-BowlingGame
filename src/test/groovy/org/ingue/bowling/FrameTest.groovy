@@ -32,7 +32,7 @@ class FrameTest extends Specification {
     def "음수가 입력으로 들어오면 에러"() {
         given:
         def wrongLowFallenPin = -1
-        def frame = new Frame();
+        def frame = new Frame()
 
         when:
         frame.pitch(wrongLowFallenPin)
