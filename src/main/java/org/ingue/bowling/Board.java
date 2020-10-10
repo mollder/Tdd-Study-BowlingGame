@@ -16,25 +16,55 @@ public class Board {
         return board[round - 1];
     }
 
-    public int getTotalGamePoint() {
-        int totalGamePoint = 0;
+    public int getTotalPoint() {
+        int totalPoint = 0;
 
         for(int i = 0; i < board.length && board[i] != null; i++) {
-            Score currentRoundScore = board[i];
-
-            totalGamePoint += getTotalRoundPoint(currentRoundScore);
+            totalPoint += getRoundPoint(i);
         }
 
-        return totalGamePoint;
+        return totalPoint;
     }
 
-    private int getTotalRoundPoint(Score currentScore) {
-        int roundTotalPoint = 0;
+    private int getRoundPoint(int round) {
+        int roundPoint = 0;
 
-        for(int point : currentScore.getPointList()) {
-            roundTotalPoint += point;
+        roundPoint += getNormalPoint(round);
+
+        if(isSpare(round)) {
+            roundPoint += getSparePoint(round);
         }
 
-        return roundTotalPoint;
+        return roundPoint;
+    }
+
+    private boolean isSpare(int round) {
+        Score currentRoundScore = board[round];
+
+        return ScoreType.isSpare(currentRoundScore.getScoreType());
+    }
+
+    private int getNormalPoint(int round) {
+        int normalPoint = 0;
+
+        Score currentRoundScore = board[round];
+
+        for(int point : currentRoundScore.getPointList()) {
+            normalPoint += point;
+        }
+
+        return normalPoint;
+    }
+
+    private int getSparePoint(int round) {
+        if(isSpareBonusExist(round)) {
+            return board[round + 1].getPointList().get(0);
+        }
+
+        return 0;
+    }
+
+    private boolean isSpareBonusExist(int round) {
+        return round < 9 && board[round+1] != null;
     }
 }

@@ -37,5 +37,4 @@ public class Score {
     private boolean hitSpare(int chance, int ballNumber) {
         return chance == 0 && ballNumber == 0;
     }
-
 }
