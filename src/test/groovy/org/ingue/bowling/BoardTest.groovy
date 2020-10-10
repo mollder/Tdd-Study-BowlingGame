@@ -111,4 +111,71 @@ class BoardTest extends Specification {
         then:
         totalPoint == 18
     }
+
+    def "1라운드에 스트라이크, 2라운드에 8점을 얻었다면 총 점수는 26점이어야 합니다"() {
+        given:
+        def firstFrame = new Frame()
+        firstFrame.pitch(10)
+
+        def secondFrame = new Frame()
+        secondFrame.pitch(8)
+        secondFrame.pitch(0)
+
+        def board = new Board()
+        board.save(1, firstFrame)
+        board.save(2, secondFrame)
+
+        when:
+        def totalPoint = board.getTotalPoint()
+
+        then:
+        totalPoint == 26
+    }
+
+    def "1라운드에 스트라이크, 2라운드에 스트라이크, 3라운드에 8점을 얻었다면 총 점수는 54점입니다."() {
+        given:
+        def firstFrame = new Frame()
+        firstFrame.pitch(10)
+
+        def secondFrame = new Frame()
+        secondFrame.pitch(10)
+
+        def thirdFrame = new Frame()
+        thirdFrame.pitch(8)
+        thirdFrame.pitch(0)
+
+        def board = new Board()
+        board.save(1, firstFrame)
+        board.save(2, secondFrame)
+        board.save(3, thirdFrame)
+
+        when:
+        def totalPoint = board.getTotalPoint()
+
+        then:
+        totalPoint == 54
+    }
+
+    def "1라운드에 스트라이크, 2라운드에 스트라이크, 3라운드에 스트라이크라면 총 점수는 60점입니다."() {
+        given:
+        def firstFrame = new Frame()
+        firstFrame.pitch(10)
+
+        def secondFrame = new Frame()
+        secondFrame.pitch(10)
+
+        def thirdFrame = new Frame()
+        thirdFrame.pitch(10)
+
+        def board = new Board()
+        board.save(1, firstFrame)
+        board.save(2, secondFrame)
+        board.save(3, thirdFrame)
+
+        when:
+        def totalPoint = board.getTotalPoint()
+
+        then:
+        totalPoint == 60
+    }
 }

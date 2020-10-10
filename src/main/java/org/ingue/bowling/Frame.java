@@ -25,9 +25,9 @@ public class Frame {
         checkStatus(fallenPinNumber);
 
         ballNumber -= fallenPinNumber;
-        score.add(fallenPinNumber);
         chance--;
 
+        score.add(fallenPinNumber);
         score.setScoreType(chance, ballNumber);
 
         return fallenPinNumber;

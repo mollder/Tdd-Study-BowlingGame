@@ -14,7 +14,11 @@ public enum ScoreType {
         this.name = name;
     }
 
-    public static boolean isSpare(ScoreType inputScoreType) {
-        return inputScoreType.equals(ScoreType.SPARE);
+    public static boolean isSpare(ScoreType input) {
+        return input.equals(ScoreType.SPARE);
+    }
+
+    public static boolean isStreak(ScoreType input) {
+        return input.equals(ScoreType.STREAK);
     }
 }
