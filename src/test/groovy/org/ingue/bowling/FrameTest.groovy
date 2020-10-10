@@ -44,7 +44,7 @@ class FrameTest extends Specification {
     def "기회가 없다면 NotHaveChanceException 발생"() {
         given:
         def chance = 0
-        def frame = new Frame();
+        def frame = new Frame()
         frame.setChance(chance)
 
         when:

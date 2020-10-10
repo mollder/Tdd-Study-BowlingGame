@@ -8,16 +8,17 @@ public class GameRunner {
     }
 
     public void runGame() {
-        Board resultBoard = new Board();
-
         printStartMessage();
+
+        Board resultBoard = new Board();
 
         for (int round = 1; round <= 10; round++) {
             Frame frame = new Frame();
 
             playRound(round, frame);
-            printCheeringMessage(frame);
             resultBoard.save(round, frame);
+
+            printCheeringMessage(frame);
         }
 
         printTotalPoint(resultBoard);
