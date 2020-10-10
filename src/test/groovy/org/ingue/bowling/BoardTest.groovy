@@ -23,4 +23,26 @@ class BoardTest extends Specification {
         pointList.get(0) == 4
         pointList.get(1) == 5
     }
+
+    def "1라운드에 9점, 2라운드에 8점을 획득하면 총 점수는 17점이어야 합니다."() {
+        given:
+        def firstFrame = new Frame()
+        firstFrame.pitch(4)
+        firstFrame.pitch(5)
+
+        def secondFrame = new Frame()
+        secondFrame.pitch(4)
+        secondFrame.pitch(4)
+
+        def board = new Board()
+
+        board.save(1, firstFrame)
+        board.save(2, secondFrame)
+
+        when:
+        def totalPoint = board.getTotalGamePoint()
+
+        then:
+        totalPoint == 17
+    }
 }
