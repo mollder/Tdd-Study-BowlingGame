@@ -19,7 +19,7 @@ public class Board {
     public int getTotalPoint() {
         int totalPoint = 0;
 
-        for(int i = 0; i < board.length && board[i] != null; i++) {
+        for(int i = 0; isRoundExist(i); i++) {
             totalPoint += getRoundPoint(i);
         }
 
@@ -62,6 +62,10 @@ public class Board {
         }
 
         return 0;
+    }
+
+    private boolean isRoundExist(int i) {
+        return i < board.length && board[i] != null;
     }
 
     private boolean isSpareBonusExist(int round) {
